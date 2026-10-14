@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #069494, #6d07a8);
+            color: #add4fc;
+            text-align: center;
+         
+        }
+        h1 {
+            color: #27375f;   
+        }
+        h2 {
+            color: #680895;
+        }
+        button {
+            background-color: #6a3173;
+            color: rgb(117, 183, 185);   
+            padding: 2px 5px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        </style>
+    </head>
+
+    <body>
+        <h1>Add your To Do List here</h1>
+        <form id="myForm">
+            <input id="myInput" type="text">
+            <button>Add</button>
+        </form>
+
+        <h2>To Do List</h2>
+        <ul id="myItem"></ul>
+
+        <script>
+            var myForm = document.getElementById("myForm");
+            var myInput = document.getElementById("myInput");
+            var myItem = document.getElementById("myItem");
+
+            myForm.addEventListener("submit", function(event){
+                event.preventDefault();
+                createItem(myInput.value)
+            })
+
+            function createItem(inputItems){
+                var items = `<li>${inputItems}
+                    <button onclick="deleteElement(this)">Delete</button> </li>`
+                    myItem.insertAdjacentHTML("beforeend", items)
+                    myInput.value = ""
+                    myInput.focus()
+            }
+
+            function deleteElement(ElementToDelete){
+                ElementToDelete.parentElement.remove()
+            }
+        </script>
+    </body>
+</html>
