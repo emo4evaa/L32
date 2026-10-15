@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #f8a6ec, #b82caf);
+            color: #e8a1ee;
+            text-align: center;
+
+        }
+
+        h1 {
+            color: #782c72;
+        }
+
+        h2 {
+            color: #782c72;
+        }
+
+        button {
+            background-color: #841e68;
+            color: rgb(235, 153, 212);
+            padding: 2px 5px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Add your Shopping List here</h1>
+    <form id="myForm">
+        <input id="myInput" type="text">
+        <button>Add</button>
+    </form>
+
+    <h2>Shopping List</h2>
+    <ul id="myItem"></ul>
+
+    <script>
+        var myForm = document.getElementById("myForm");
+        var myInput = document.getElementById("myInput");
+        var myItem = document.getElementById("myItem");
+
+        myForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            createItem(myInput.value)
+        })
+
+        function createItem(inputItems) {
+            var items = `<li>${inputItems}
+                    <button onclick="deleteElement(this)">Delete</button> </li>`
+            myItem.insertAdjacentHTML("beforeend", items)
+            myInput.value = ""
+            myInput.focus()
+        }
+
+        function deleteElement(ElementToDelete) {
+            ElementToDelete.parentElement.remove()
+        }
+    </script>
+</body>
+
+</html>
